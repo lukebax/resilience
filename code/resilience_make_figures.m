@@ -6,6 +6,13 @@ path_to_inputFolder = "../data/";
 path_to_inputDataFile = fullfile(path_to_inputFolder, 'resilience_data');
 T = readtable(path_to_inputDataFile);
 
+%% make output folder
+output_folder = '../results/';
+
+if ~exist(output_folder, 'dir')
+    mkdir(output_folder)
+end
+
 %% replace NaN with 0
 
 % study design
@@ -278,5 +285,8 @@ a.FontSize = section_labels_fontsize;
 
 
 %%
-saveas(gcf, 'resilience_figure_2', 'epsc');
+% saveas(gcf, 'resilience_figure_2', 'epsc');
+
+fig_file_name = strcat(output_folder, 'resilience_figure_2.pdf');
+exportgraphics(gcf,fig_file_name)
 
